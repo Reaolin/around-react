@@ -2,12 +2,12 @@ import React from 'react';
 
 function PopupWithImage(props){
 	return(
-		<div className={`modal modal_type_display-image" ${props.isOpen ? "popup_visible" : " "}`} onClick={props.onClose}>
+		<div className={`modal modal_type_display-image ${props.isOpen ? "modal_display" : " "}`} onClick={props.onClose}>
 		<div className="modal__container">
 			<button className="modal__close link" onClick={props.onClose}></button>
 			<figure>
-				<img src="#" alt="#" className="modal__img" />
-				<figcaption className="modal__caption"></figcaption>
+				<img src={props.link} alt={props.title} className="modal__img" />
+				<figcaption className="modal__caption">{props.title}</figcaption>
 			</figure>
 		</div>
 	</div>
