@@ -70,16 +70,18 @@ function Main(props) {
 			</section>
 			<section className="photo-container">
 				<ul className="photo-grid">
-				
-            {userCards.map((card) =>
-              
-              <Card key={card._id} src={card.link} title={card.name} likes={card.likes.length} onCardClick={() => props.handleCardClick(card.link, card.name)} onDeleteClick={() => props.handleDeleteClick()}/>
-            
-            )}	
+					{userCards.map((card) => (
+						<Card
+							key={card._id}
+							src={card.link}
+							title={card.name}
+							likes={card.likes.length}
+							onCardClick={() => props.handleCardClick(card.link, card.name)}
+							onDeleteClick={() => props.handleDeleteClick()}
+						/>
+					))}
 				</ul>
 			</section>
-			
-
 		</main>
 	);
 }

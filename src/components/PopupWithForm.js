@@ -2,7 +2,11 @@ import React from "react";
 
 function PopupWithForm(props) {
 	return (
-		<div className={`modal modal_type_${props.name} ${props.isOpen ? "modal_display" : " "}`} >
+		<div
+			className={`modal modal_type_${props.name} ${
+				props.isOpen ? "modal_display" : " "
+			}`}
+		>
 			<div className="modal__container">
 				<div className="modal__content">
 					<h3 className="modal__title">{`${props.title}`}</h3>
@@ -13,15 +17,16 @@ function PopupWithForm(props) {
 					>
 						{props.children}
 						<button
-								type="submit"
-								className="modal__button form__save modal__button_disabled"
-								disabled=""
-							>
-								{props.buttonText}
-							</button>
+							type="submit"
+							className="modal__button form__save modal__button_disabled"
+							disabled=""
+						>
+							{props.buttonText}
+						</button>
 					</form>
 					<button
-						className="modal__close link" onClick={props.onClose}
+						className="modal__close link"
+						onClick={props.onClose}
 					></button>
 				</div>
 			</div>
