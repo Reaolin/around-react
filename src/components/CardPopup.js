@@ -17,8 +17,8 @@ function AddCardPopup(props) {
 					name="name"
 					className="modal__input form__title-input"
 					placeholder="title"
-					minlength="1"
-					maxlength="30"
+					minLength="1"
+					maxLength="30"
 					required
 				/>
 				<span id="image-title-error" className="modal__error"></span>

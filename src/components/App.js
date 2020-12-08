@@ -49,7 +49,7 @@ function App() {
 	}
 
 	return (
-		<body>
+		<div>
 			<Header />
 			<Main
 				handleEditAvatarClick={handleEditAvatarClick}
@@ -80,7 +80,7 @@ function App() {
 			/>
 			{/*Delete Popup*/}
 			<DeleteCard isOpen={isDeleteOpen} onClose={handlePopupClose} />
-		</body>
+		</div>
 	);
 }
 

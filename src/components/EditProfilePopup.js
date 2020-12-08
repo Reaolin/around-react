@@ -18,11 +18,11 @@ function EditProfilePopup(props) {
 					className="modal__input form__name-input"
 					value=""
 					placeholder="name"
-					minlength="2"
-					maxlength="40"
+					minLength="2"
+					maxLength="40"
 					required
 				/>
-				<span id="profile-name-error" class="modal__error"></span>
+				<span id="profile-name-error" className="modal__error"></span>
 			</label>
 
 			<label className="modal__label">
@@ -33,8 +33,8 @@ function EditProfilePopup(props) {
 					className="modal__input form__job-input"
 					value=""
 					placeholder="occupation"
-					minlength="2"
-					maxlength="200"
+					minLength="2"
+					maxLength="200"
 					required
 				/>
 				<span id="profile-occupation-error" className="modal__error"></span>

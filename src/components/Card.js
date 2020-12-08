@@ -10,9 +10,15 @@ function Card(props) {
 	function deleteClick() {
 		props.onDeleteClick(props.card);
 	}
+
 	return (
 		<li className="card">
-			<img className="card__img" src={props.src} onClick={handleClick} />
+			<img
+				className="card__img"
+				src={props.src}
+				onClick={handleClick}
+				alt={props.title}
+			/>
 			<button className="card__remove-btn" onClick={deleteClick}>
 				<img src={TrashLid} alt="Trashcan lid" className="card__trash-top" />
 				<img

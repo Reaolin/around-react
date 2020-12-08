@@ -8,6 +8,7 @@ function Main(props) {
 	const [userAvatar, setUserAvatar] = React.useState("");
 	const [userCards, setUserCards] = React.useState([]);
 
+	//Calls the users info
 	React.useEffect(() => {
 		api
 			.getUserInfo()
@@ -17,10 +18,9 @@ function Main(props) {
 				setUserDescription(res);
 				setUserAvatar(res);
 			})
-			.catch((err) => console.log(err));
-	}, []);
 
-	React.useEffect(() => {
+	//Calls the initial cards from the API --don't forget the empty array
+	.then(()=>{
 		api
 			.getInitialCards()
 			.then((res) => {
@@ -36,7 +36,10 @@ function Main(props) {
 				);
 			})
 			.catch((err) => console.log(err));
-	}, []);
+	}, [])
+
+	.catch((err) => console.log(err));
+}, []);
 
 	return (
 		<main className="main">
@@ -76,6 +79,7 @@ function Main(props) {
 							src={card.link}
 							title={card.name}
 							likes={card.likes.length}
+							owner={card.owner}
 							onCardClick={() => props.handleCardClick(card.link, card.name)}
 							onDeleteClick={() => props.handleDeleteClick()}
 						/>

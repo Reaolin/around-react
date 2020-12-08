@@ -18,7 +18,7 @@ function EditAvatarPopup(props) {
 					className="modal__input form__url-input"
 					value=""
 					placeholder="avatar url"
-					minlength="2"
+					minLength="2"
 					required
 				/>
 				<span id="avatar-url-error" className="modal__error">
