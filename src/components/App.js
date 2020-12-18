@@ -7,6 +7,9 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import PopupWithImage from "./PopupWithImage";
 import DeleteCard from "./DeleteCard";
+import api from '../utils/Api';
+import {UserContext} from '../contexts/CurrentUserContext';
+
 
 function App() {
 	//create 'state' variables
@@ -17,6 +20,9 @@ function App() {
 	const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
 	const [cardLink, setCardLink] = React.useState("");
 	const [cardTitle, setCardTitle] = React.useState("");
+	const [currentUser, setCurrentUser] = React.useState("");
+
+
 
 	//creates handlers for opening popups
 	function handleEditAvatarClick() {
@@ -33,6 +39,8 @@ function App() {
 	function handleDeleteClick() {
 		setIsDeleteOpen(true);
 	}
+
+	//creates the handler for opening the image
 	function handleCardClick(link, title) {
 		setIsImagePopupOpen(true);
 		setCardLink(link);
@@ -48,8 +56,22 @@ function App() {
 		setIsDeleteOpen(false);
 	}
 
+
+	//Calls the users info
+	React.useEffect(() => {
+		api
+			.getUserInfo()
+			.then((res) => {
+				console.log(res);
+				setCurrentUser(res);
+			})
+			.catch((err) => console.log(err));
+		}, []);
+
+
 	return (
 		<div>
+			<UserContext.Provider value={currentUser}>
 			<Header />
 			<Main
 				handleEditAvatarClick={handleEditAvatarClick}
@@ -80,6 +102,7 @@ function App() {
 			/>
 			{/*Delete Popup*/}
 			<DeleteCard isOpen={isDeleteOpen} onClose={handlePopupClose} />
+			</UserContext.Provider>
 		</div>
 	);
 }

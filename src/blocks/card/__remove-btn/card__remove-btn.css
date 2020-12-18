@@ -4,12 +4,16 @@
     right: 15px;
     background: none;
     border: none;
-    display: flex;
     flex-direction: column;
     padding: 0;
+    display: none;
 }
 
 .card__remove-btn:hover{
     opacity: .6;
     cursor: url('../../../images/mouse.svg'), auto;
+}
+
+.card__remove-btn_visible{
+    display: flex;
 }
