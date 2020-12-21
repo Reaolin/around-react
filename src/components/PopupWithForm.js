@@ -14,11 +14,12 @@ function PopupWithForm(props) {
 						action="#"
 						className={`modal__form form form_type_${props.name}`}
 						noValidate
+						onSubmit={props.onSubmit}
 					>
 						{props.children}
 						<button
 							type="submit"
-							className="modal__button form__save modal__button_disabled"
+							className="modal__button form__save"
 							disabled=""
 						>
 							{props.buttonText}

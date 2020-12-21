@@ -1,4 +1,7 @@
-.card__remove-btn {
+.card__remove-btn{
+    opacity: 0;
+}
+.card__remove-btn_visible {
     position: absolute;
     top: 19px;
     right: 15px;
@@ -6,14 +9,13 @@
     border: none;
     flex-direction: column;
     padding: 0;
-    display: none;
+    display: flex;
+    opacity: 1;
 }
 
-.card__remove-btn:hover{
+.card__remove-btn_visible:hover{
     opacity: .6;
     cursor: url('../../../images/mouse.svg'), auto;
 }
 
-.card__remove-btn_visible{
-    display: flex;
-}
+

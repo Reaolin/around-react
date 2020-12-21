@@ -1,7 +1,25 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import { UserContext } from "../contexts/CurrentUserContext";
 
 function EditProfilePopup(props) {
+	const currentUser = React.useContext(UserContext);
+	const [name, setName] = React.useState("");
+	const [occupation, setOccupation] = React.useState("");
+
+	function handleNameChange(e) {
+		setName(e.target.value);
+	}
+
+	function handleOccupationChange(e) {
+		setOccupation(e.target.value);
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		props.onProfileUpdate({name: name, about: occupation});
+	}
+
 	return (
 		<PopupWithForm
 			name="edit-profile"
@@ -9,6 +27,7 @@ function EditProfilePopup(props) {
 			buttonText="Save"
 			isOpen={props.isOpen}
 			onClose={props.onClose}
+			onSubmit={handleSubmit}
 		>
 			<label className="modal__label">
 				<input
@@ -16,10 +35,11 @@ function EditProfilePopup(props) {
 					type="text"
 					name="name"
 					className="modal__input form__name-input"
-					value=""
 					placeholder="name"
 					minLength="2"
 					maxLength="40"
+					defaultValue={currentUser.name}
+					onChange={handleNameChange}
 					required
 				/>
 				<span id="profile-name-error" className="modal__error"></span>
@@ -31,10 +51,11 @@ function EditProfilePopup(props) {
 					type="text"
 					name="occupation"
 					className="modal__input form__job-input"
-					value=""
 					placeholder="occupation"
 					minLength="2"
 					maxLength="200"
+					defaultValue={currentUser.about}
+					onChange={handleOccupationChange}
 					required
 				/>
 				<span id="profile-occupation-error" className="modal__error"></span>

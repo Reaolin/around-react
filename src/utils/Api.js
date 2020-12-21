@@ -51,6 +51,7 @@ class Api {
 		}).then((res) => (res.ok ? res.json() : Promise.reject(res.status)));
 	}
 
+
 	//PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
 	addLikes(cardId) {
 		return fetch(this._baseURL + "/cards/likes/" + cardId, {
