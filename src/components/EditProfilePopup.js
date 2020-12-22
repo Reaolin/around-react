@@ -1,9 +1,8 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-import { UserContext } from "../contexts/CurrentUserContext";
 
 function EditProfilePopup(props) {
-	const currentUser = React.useContext(UserContext);
+	//const currentUser = React.useContext(UserContext);
 	const [name, setName] = React.useState("");
 	const [occupation, setOccupation] = React.useState("");
 
@@ -38,8 +37,8 @@ function EditProfilePopup(props) {
 					placeholder="name"
 					minLength="2"
 					maxLength="40"
-					defaultValue={currentUser.name}
 					onChange={handleNameChange}
+					value={name}
 					required
 				/>
 				<span id="profile-name-error" className="modal__error"></span>
@@ -54,8 +53,8 @@ function EditProfilePopup(props) {
 					placeholder="occupation"
 					minLength="2"
 					maxLength="200"
-					defaultValue={currentUser.about}
 					onChange={handleOccupationChange}
+					value={occupation}
 					required
 				/>
 				<span id="profile-occupation-error" className="modal__error"></span>

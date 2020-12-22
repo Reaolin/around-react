@@ -1,7 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddCardPopup(props) {
+function AddPlacePopup(props) {
 	const [cardName, setCardName] =React.useState("");
 	const [cardLink, setCardLink] =React.useState("");
 
@@ -39,6 +39,7 @@ function AddCardPopup(props) {
 					minLength="1"
 					maxLength="30"
 					onChange={handleCardName}
+					value={cardName}
 					required
 				/>
 				<span id="image-title-error" className="modal__error"></span>
@@ -52,6 +53,7 @@ function AddCardPopup(props) {
 					className="modal__input form__url-input"
 					placeholder="url"
 					onChange={handleCardLink}
+					value={cardLink}
 					required
 				/>
 				<span id="image-url-error" className="modal__error"></span>
@@ -59,4 +61,4 @@ function AddCardPopup(props) {
 		</PopupWithForm>
 	);
 }
-export default AddCardPopup;
+export default AddPlacePopup;

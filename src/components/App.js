@@ -2,13 +2,14 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import AddCardPopup from "./CardPopup";
+import AddPlacePopup from "./AddPlacePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
-import PopupWithImage from "./PopupWithImage";
+import ImagePopup from "./ImagePopup";
 //import DeleteCard from "./DeleteCard";
-import api from "../utils/Api";
+import api from "../utils/api";
 import { UserContext } from "../contexts/CurrentUserContext";
+
 
 function App() {
 	//create 'state' variables
@@ -81,26 +82,26 @@ function App() {
 			.catch((err) => console.log(err));
 	}, []);
 
-
 	function handleCardLike(card) {
 		// Check one more time if this card was already liked
-		
-		const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+		const isLiked = card.likes.some((i) => i._id === currentUser._id);
 		let res;
-	
+
 		if (isLiked === false) {
-		  res = api.addLikes(card._id)
-		  } else {
-		  res = api.removeLikes(card._id)
+			res = api.addLikes(card._id);
+		} else {
+			res = api.removeLikes(card._id);
 		}
-		res.then((newCard) => {
-		  // Create a new array based on the existing one and putting a new card into it
-		  const newCards = cards.map((c) => c._id === card._id ? newCard : c)
-		  // Update the state
-		  setUserCards(newCards);
-		})
-		.catch(err => console.log(err));
-	  }
+		res
+			.then((newCard) => {
+				// Create a new array based on the existing one and putting a new card into it
+				const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
+				// Update the state
+				setUserCards(newCards);
+			})
+			.catch((err) => console.log(err));
+	}
 	function handleCardDelete(card) {
 		api
 			.removeCard(card._id)
@@ -111,7 +112,7 @@ function App() {
 			.catch((err) => console.log(err));
 	}
 
-	function handleAddPlace({name, link}) {
+	function handleAddPlace({ name, link }) {
 		api
 			.addCard({ name, link })
 			.then((newCard) => {
@@ -121,15 +122,11 @@ function App() {
 			.catch((err) => console.log(err));
 	}
 
-	function handleUpdateUser({name, about}) {
+	function handleUpdateUser({ name, about }) {
 		api
 			.setUserInfo({ name, about })
-			.then(() => {
-				setCurrentUser({
-					name,
-					about,
-					avatar: currentUser.avatar
-				});
+			.then((res) => {
+				setCurrentUser(res);
 			})
 			.then(() => setIsEditProfileOpen(false))
 			.catch((err) => console.log(err));
@@ -138,12 +135,8 @@ function App() {
 	function handleUpdateAvatar(avatar) {
 		api
 			.setAvatar({ avatar })
-			.then(() => {
-				setCurrentUser({
-					name: currentUser.name,
-					about: currentUser.about,
-					avatar,
-				});
+			.then((res) => {
+				setCurrentUser(res);
 			})
 			.then(() => setIsEditAvatarOpen(false))
 			.catch((err) => console.log(err));
@@ -174,7 +167,7 @@ function App() {
 				/>
 				<Footer />
 				{/*Add Card Component*/}
-				<AddCardPopup
+				<AddPlacePopup
 					isOpen={isAddPlaceOpen}
 					onClose={handlePopupClose}
 					handleAddPlace={handleAddPlace}
@@ -192,7 +185,7 @@ function App() {
 					onProfileUpdate={handleUpdateUser}
 				/>
 				{/*Card Popup*/}
-				<PopupWithImage
+				<ImagePopup
 					isOpen={isImagePopupOpen}
 					onClose={handlePopupClose}
 					title={cardTitle}
