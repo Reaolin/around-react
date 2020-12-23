@@ -7,7 +7,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import ImagePopup from "./ImagePopup";
 //import DeleteCard from "./DeleteCard";
-import api from "../utils/api";
+import api from "../utils/test";
 import { UserContext } from "../contexts/CurrentUserContext";
 
 
